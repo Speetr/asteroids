@@ -1,12 +1,16 @@
 import pygame
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
 from logger import log_state
+from player import Player
 
 def main():
     pygame.init()
 
     # set game resolution
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
+    # create player object
+    protag = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     # used to set fps to 60
     gameclock = pygame.time.Clock()
@@ -24,6 +28,9 @@ def main():
             
         #black background
         screen.fill("black")
+
+        # render player
+        protag.draw(screen)
 
         # refresh the screen
         pygame.display.flip()
