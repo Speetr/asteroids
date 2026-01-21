@@ -29,6 +29,9 @@ def main():
         #black background
         screen.fill("black")
 
+        #update player
+        protag.update(dt)
+
         # render player
         protag.draw(screen)
 
