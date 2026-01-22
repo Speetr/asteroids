@@ -9,12 +9,16 @@ def main():
     # set game resolution
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-    # create player object
-    protag = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
-
     # used to set fps to 60
     gameclock = pygame.time.Clock()
     dt = 0
+
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    Player.containers = (updatable, drawable)
+
+    # create player object
+    protag = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     #  main game loop
     while True:
@@ -30,10 +34,12 @@ def main():
         screen.fill("black")
 
         #update player
-        protag.update(dt)
+        # protag.update(dt)
+        updatable.update(dt)
 
         # render player
-        protag.draw(screen)
+        for item in drawable:
+            item.draw(screen)
 
         # refresh the screen
         pygame.display.flip()
