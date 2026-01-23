@@ -47,6 +47,13 @@ def main():
         #update items
         updatable.update(dt)
 
+        for rock in asteroids:
+            for shot in shots:
+                if shot.collides_with(rock):
+                    log_event("asteroid_shot")
+                    rock.kill()
+                    shot.kill()
+
         for item in asteroids:
             if item.collides_with(protag):
                 log_event("player_hit")
